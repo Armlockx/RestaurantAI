@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "GroqTest — Cardápio",
+  title: "RestaurantAI — Cardápio",
   description: "Cardápio com assistente IA, carrinho e checkout",
 };
 
@@ -13,7 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <Suspense fallback={<header className="site-header site-header--loading" />}>
+          <SiteHeader />
+        </Suspense>
+        <main className="site-main">{children}</main>
+      </body>
     </html>
   );
 }

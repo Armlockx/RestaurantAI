@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isStaffOrAdmin } from "@/lib/auth";
 import { hasAdminClient } from "@/lib/supabase/admin";
@@ -14,14 +13,8 @@ export default async function AdminLayout({
   if (demoAdmin) {
     return (
       <div className="admin-shell">
-        <nav className="admin-nav">
-          <Link href="/admin/orders">Pedidos</Link>
-          <Link href="/admin/conversations">Conversas</Link>
-          <Link href="/admin/menu">Cardápio</Link>
-          <Link href="/">← Voltar ao site</Link>
-        </nav>
         <p className="admin-demo-banner">Modo demo (sem Supabase)</p>
-        <main className="admin-main">{children}</main>
+        <div className="admin-main">{children}</div>
       </div>
     );
   }
@@ -46,13 +39,7 @@ export default async function AdminLayout({
 
   return (
     <div className="admin-shell">
-      <nav className="admin-nav">
-        <Link href="/admin/orders">Pedidos</Link>
-        <Link href="/admin/conversations">Conversas</Link>
-        <Link href="/admin/menu">Cardápio</Link>
-        <Link href="/">← Voltar ao site</Link>
-      </nav>
-      <main className="admin-main">{children}</main>
+      <div className="admin-main">{children}</div>
     </div>
   );
 }
