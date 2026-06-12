@@ -1,0 +1,75 @@
+salvar imagens em: C:\Users\julio.reus\Documents\Julio Inovacao 2025\2 - Sites\groqtest\img\itens
+
+
+Entradas
+[x] Bolinho de Costela
+Bolinho de Costela, 6 unidades, crosta dourada e crocante, recheio de costela bovina desfiada com cebola e temperos, molho barbecue suave visível ao lado, apresentação em prato rústico escuro, ramos de alecrim e salsinha, fundo de tábua de madeira envernizada, luz natural lateral suave, fotografia gastronômica profissional, foco na textura crocante da casca e na costela, profundidade de campo curta, cores quentes e apetitosas, estilo editorial de menu.
+
+[x] Ceviche Tropical
+Ceviche Tropical em taça ou bowl de vidro, cubos de peixe branco marinados em limão, manga em cubos, cebola roxa em fatias finas, coentro fresco, pimenta dedo-de-moça, caldo translúcido visível, apresentação em prato ou bowl rústico, fundo de mesa de madeira clara, luz natural difusa, fotografia gastronômica profissional, foco na textura do peixe e da manga, cores tropicais vibrantes, profundidade de campo curta, estilo editorial de menu.
+
+[x] Salada Caprese
+Salada Caprese, rodelas alternadas de tomate italiano vermelho, mussarela fresca cremosa e folhas de manjericão, fios de redução de balsâmico e azeite extravirgem brilhando, apresentação em prato de cerâmica branca rústica, fundo de mesa de madeira clara, luz natural lateral suave, fotografia gastronômica profissional, foco nas camadas de tomate e mussarela, cores vibrantes, profundidade de campo curta, estilo editorial de menu.
+
+Pratos Principais
+[x] Parmegiana de Frango
+Parmegiana de Frango, filé empanado dourado e crocante com camada generosa de molho de tomate sugo e muçarela e parmesão gratinados, arroz branco soltinho ao lado, apresentação em prato fundo branco, ramo de manjericão, fundo de mesa de madeira, luz natural lateral suave, fotografia gastronômica profissional, foco no queijo derretido e na crosta empanada, cores quentes, profundidade de campo curta, estilo editorial de menu.
+
+[x] Risoto de Funghi
+Risoto de Funghi em prato raso, arroz arbóreo cremoso, cogumelos funghi laminados, toque de vinho branco, parmesão ralado na hora, textura al dente visível, apresentação em prato de cerâmica clara, fundo de madeira rústica, luz natural lateral suave, fotografia gastronômica profissional, foco na cremosidade do arroz e nos cogumelos, profundidade de campo curta, cores terrosas e cremosas, estilo editorial de menu.
+
+[x] Hambúrguer Artesanal
+Hambúrguer Artesanal, blend bovino grelhado com marcas de grelha, pão brioche dourado, cheddar derretido escorrendo, cebola caramelizada, alface, tomate, batatas fritas douradas ao lado em cesta, apresentação em prato de madeira ou cerâmica, fundo rústico, luz natural lateral suave, fotografia gastronômica profissional, foco nas camadas do hambúrguer e no queijo derretido, profundidade de campo curta, estilo editorial de menu.
+
+[x] Salmão Grelhado
+Salmão Grelhado ao ponto com marcas de grelha, filé rosado e úmido, legumes salteados coloridos (abobrinha, cenoura, brócolis), purê de batata cremoso ao lado, rodelas de limão siciliano, ervas frescas, apresentação em prato branco raso, fundo de madeira clara, luz natural lateral suave, fotografia gastronômica profissional, foco na textura do salmão e nas fibras do peixe, profundidade de campo curta, estilo editorial de menu.
+
+[x] Nhoque ao Sugo
+Nhoque ao Sugo, bolinhas de nhoque de batata cobertas com molho de tomate sugo, folhas de manjericão fresco, parmesão ralado, apresentação em prato fundo branco, fundo de mesa de madeira, luz natural lateral suave, fotografia gastronômica profissional, foco na textura do nhoque e no molho, cores vermelhas e verdes, profundidade de campo curta, estilo editorial de menu.
+
+[x] Strogonoff de Carne
+Strogonoff de Carne em prato fundo, tiras de carne bovina em molho cremoso com champignon laminado, arroz branco soltinho e batata palha dourada ao lado, apresentação em prato branco, fundo de madeira rústica, luz natural lateral suave, fotografia gastronômica profissional, foco na cremosidade do molho e na carne, cores cremosas e douradas, profundidade de campo curta, estilo editorial de menu.
+
+[x] Bowl Vegano Proteico
+Bowl Vegano Proteico em bowl de cerâmica, base de quinoa cozida, grão-de-bico dourado, abobrinha e cenoura assadas, molho tahine cremoso por cima, sementes e folhas verdes, limão cortado, apresentação em bowl rústico sobre mesa de madeira, luz natural lateral suave, fotografia gastronômica profissional, foco nas camadas e nas texturas, cores naturais e vibrantes, profundidade de campo curta, estilo editorial de menu.
+
+Massas
+[x] Spaghetti Carbonara
+Spaghetti Carbonara em prato raso, massa al dente envolvida em molho cremoso de ovos, pedaços de bacon crocante, parmesão ralado, pimenta-do-reino preta visível, fios de massa com brilho do molho, apresentação em prato de cerâmica clara, fundo de madeira rústica, luz natural lateral suave, fotografia gastronômica profissional, foco na textura da massa e no bacon, profundidade de campo curta, estilo editorial de menu.
+
+[x] Penne ao Pesto
+Penne ao Pesto em prato raso, massa penne al dente coberta com pesto de manjericão verde brilhante, tomates-cereja confitados avermelhados, lascas de parmesão, castanhas visíveis, apresentação em prato de cerâmica clara, fundo de madeira rústica, luz natural lateral suave, fotografia gastronômica profissional, foco no pesto e nos tomates, cores verdes e vermelhas, profundidade de campo curta, estilo editorial de menu.
+
+Pizzas
+[x] Margherita
+Pizza Margherita fatia única ou pizza inteira, massa artesanal com borda levemente queimada, muçarela derretida e borbulhante, tomate em pedaços, folhas de manjericão fresco, fios de azeite extravirgem, apresentação em prato de pizza ou tábua de madeira, fundo rústico, luz natural lateral suave, fotografia gastronômica profissional, foco na textura do queijo e da massa, cores da bandeira italiana, profundidade de campo curta, estilo editorial de menu.
+
+[x] Calabresa Especial
+Pizza Calabresa Especial fatia única ou pizza inteira, massa artesanal, calabresa fatiada em rodelas, cebola em meia-lua, azeitonas pretas, orégano polvilhado, muçarela derretida, apresentação em prato de pizza ou tábua de madeira, fundo rústico, luz natural lateral suave, fotografia gastronômica profissional, foco na calabresa e no queijo, cores quentes e apetitosas, profundidade de campo curta, estilo editorial de menu.
+
+Sobremesas
+[x] Cheesecake de Frutas Vermelhas
+Cheesecake de Frutas Vermelhas, fatia com base de biscoito, creme de cream cheese suave, calda de morango e amora escorrendo, frutas vermelhas frescas decorando, apresentação em prato de sobremesa branco, fundo de mesa de madeira clara, luz natural lateral suave, fotografia gastronômica profissional, foco nas camadas e na calda, cores vibrantes, profundidade de campo curta, estilo editorial de menu.
+
+[x] Mousse de Chocolate 70%
+Mousse de Chocolate 70% em taça ou prato de sobremesa, textura aerada e sedosa, raspas de chocolate amargo por cima, apresentação elegante em taça de vidro ou prato branco, fundo de mesa de madeira escura, luz natural lateral suave, fotografia gastronômica profissional, foco na textura do mousse e nas raspas, tons de chocolate, profundidade de campo curta, estilo editorial de menu.
+
+[x] Frutas da Estação
+Frutas da Estação em bowl ou prato, seleção de melão, uva verde e roxa, abacaxi, mamão, fatias organizadas e frescas, apresentação em bowl de cerâmica ou vidro sobre mesa de madeira clara, luz natural difusa, fotografia gastronômica profissional, foco nas texturas e nas cores das frutas, cores tropicais, profundidade de campo curta, estilo editorial de menu.
+
+Bebidas
+[x] Suco Natural (Laranja)
+Suco Natural de Laranja, copo alto de vidro transparente cheio, suco fresco e homogêneo, lascas de gelo visíveis, rodelas de laranja decorando, fundo de mesa de madeira clara, luz natural lateral, fotografia gastronômica de bebidas, foco no copo e no suco, cores laranjas vibrantes, reflexos leves no vidro, estilo editorial de menu.
+
+[x] Chá Gelado (Limão)
+Chá Gelado de Limão, jarra ou copo alto de vidro com chá preto gelado, rodelas de limão, folhas de hortelã, cubos de gelo, fundo de mesa de madeira clara, luz natural lateral suave, fotografia gastronômica de bebidas, foco na transparência e nos aromáticos, cores âmbar e verde, estilo editorial de menu.
+
+[x] Café Espresso
+Café Espresso, xícara pequena branca com crema dourada espessa, vapor sutil, pó de café ou grãos ao fundo, fundo minimalista de mesa de madeira escura, luz natural lateral suave, fotografia gastronômica de café, foco na crema e no líquido, profundidade de campo curta, estilo editorial de menu.
+
+[x] Refrigerante Lata
+Refrigerante em Lata, lata gelada com gotas de condensação, fundo de madeira rústica ou mesa clara, luz natural lateral suave, fotografia gastronômica de bebidas, foco na lata e nas gotas de água, estilo editorial de menu.
+
+Extras
+[x] Batata Rústica
+Batata Rústica, pedaços assados com páprica e alecrim, casca dourada e crocante, molho da casa (maionese) em potinho ao lado, apresentação em bowl de cerâmica rústica ou prato de madeira, fundo de tábua de madeira, luz natural lateral suave, fotografia gastronômica profissional, foco na textura da batata e no tempero, cores douradas, profundidade de campo curta, estilo editorial de menu.
