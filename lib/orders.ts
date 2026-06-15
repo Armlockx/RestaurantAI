@@ -133,6 +133,40 @@ export async function getOrdersForUser(
   return (data ?? []) as Order[];
 }
 
+export async function getOrderForRequester(
+  orderId: string,
+  userId: string | null,
+  guestSessionId: string | null
+): Promise<Order | null> {
+  if (!userId && !guestSessionId) return null;
+
+  if (!hasAdminClient()) {
+    const order = memoryOrders.get(orderId);
+    if (!order) return null;
+    const items = memoryOrderItems.get(orderId) ?? [];
+    const allowed =
+      (userId && order.user_id === userId) ||
+      (guestSessionId && order.guest_session_id === guestSessionId);
+    return allowed ? { ...order, order_items: items } : null;
+  }
+
+  const supabase = createAdminClient()!;
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*, order_items(*)")
+    .eq("id", orderId)
+    .maybeSingle();
+
+  if (error || !data) return null;
+
+  const order = data as Order;
+  const allowed =
+    (userId && order.user_id === userId) ||
+    (guestSessionId && order.guest_session_id === guestSessionId);
+
+  return allowed ? order : null;
+}
+
 export async function getAllOrders(): Promise<Order[]> {
   if (!hasAdminClient()) {
     return Array.from(memoryOrders.values())

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isStaffOrAdmin } from "@/lib/auth";
-import { logAudit, updateOrderStatus } from "@/lib/orders";
+import { GUEST_COOKIE, isStaffOrAdmin } from "@/lib/auth";
+import { getOrderForRequester, logAudit, updateOrderStatus } from "@/lib/orders";
 import { hasAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import type { OrderStatus } from "@/lib/types";
@@ -13,6 +13,37 @@ const VALID_STATUSES: OrderStatus[] = [
   "delivered",
   "cancelled",
 ];
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const guestSessionId = request.cookies.get(GUEST_COOKIE)?.value ?? null;
+    let userId: string | null = null;
+
+    try {
+      const supabase = await createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      userId = user?.id ?? null;
+    } catch {
+      /* supabase not configured */
+    }
+
+    const order = await getOrderForRequester(id, userId, guestSessionId);
+    if (!order) {
+      return NextResponse.json({ error: "Pedido não encontrado" }, { status: 404 });
+    }
+
+    return NextResponse.json({ order });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Erro";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
+}
 
 export async function PATCH(
   request: NextRequest,

@@ -2,18 +2,12 @@
 
 import { FormEvent, useState } from "react";
 import { formatPreco } from "@/lib/menu-data";
+import { ORDER_STATUS_LABELS } from "@/lib/order-labels";
 import { useCart } from "./CartProvider";
 import { showToast } from "./ToastContainer";
 import { OrderStatusTracker } from "./OrderStatusTracker";
 
-const STATUS_LABELS: Record<string, string> = {
-  pending: "Pendente",
-  confirmed: "Confirmado",
-  preparing: "Em preparo",
-  ready: "Pronto",
-  delivered: "Entregue",
-  cancelled: "Cancelado",
-};
+const STATUS_LABELS = ORDER_STATUS_LABELS;
 
 export function CheckoutForm() {
   const {

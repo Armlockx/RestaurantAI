@@ -125,6 +125,7 @@ export function SiteHeaderClient({
 
         <nav className={menuOpen ? "site-header__nav site-header__nav--open" : "site-header__nav"}>
           {navLink("/", "Cardápio")}
+          {configured && !demoAdmin && navLink("/orders", "Meus pedidos")}
           {isStaff && (
             <>
               {navLink("/admin/orders", "Pedidos")}
