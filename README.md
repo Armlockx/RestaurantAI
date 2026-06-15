@@ -17,14 +17,16 @@ Live stack: **Vercel** (app + API) + **Supabase** (Postgres, Auth, Realtime).
 
 ## Tech stack
 
-| Layer | Technology |
-|-------|------------|
+
+| Layer    | Technology                                 |
+| -------- | ------------------------------------------ |
 | Frontend | Next.js 15 (App Router), React, TypeScript |
-| Backend | Next.js Route Handlers |
-| Database | Supabase Postgres + RLS |
-| Auth | Supabase Auth (`@supabase/ssr`) |
-| AI | Groq API (`llama-3.3-70b-versatile`) |
-| Deploy | Vercel |
+| Backend  | Next.js Route Handlers                     |
+| Database | Supabase Postgres + RLS                    |
+| Auth     | Supabase Auth (`@supabase/ssr`)            |
+| AI       | Groq API (`llama-3.3-70b-versatile`)       |
+| Deploy   | Vercel                                     |
+
 
 ## Getting started
 
@@ -50,15 +52,17 @@ Copy the example file and fill in your values:
 cp .env.example .env.local
 ```
 
-| Variable | Description |
-|----------|-------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key |
-| `NEXT_PUBLIC_SITE_URL` | App URL (`http://localhost:3000` locally) |
-| `SUPABASE_SERVICE_ROLE_KEY` | Server-only; never expose to the browser |
-| `GROQ_API_KEY` | Groq API key (server-only) |
-| `CRON_SECRET` | Secret for Vercel cron jobs |
-| `DEMO_ADMIN` | Set `true` for admin without Supabase auth (dev only); use `false` in production |
+
+| Variable                        | Description                                                                      |
+| ------------------------------- | -------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`      | Supabase project URL                                                             |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key                                                         |
+| `NEXT_PUBLIC_SITE_URL`          | App URL (`http://localhost:3000` locally)                                        |
+| `SUPABASE_SERVICE_ROLE_KEY`     | Server-only; never expose to the browser                                         |
+| `GROQ_API_KEY`                  | Groq API key (server-only)                                                       |
+| `CRON_SECRET`                   | Secret for Vercel cron jobs                                                      |
+| `DEMO_ADMIN`                    | Set `true` for admin without Supabase auth (dev only); use `false` in production |
+
 
 ### 3. Database setup
 
@@ -120,13 +124,15 @@ middleware.ts        # Guest session cookie + auth refresh
 
 ## API routes
 
-| Method | Route | Purpose |
-|--------|-------|---------|
-| POST | `/api/chat` | Groq proxy + conversation audit |
-| POST | `/api/orders` | Create order (server-side price validation) |
-| GET | `/api/orders` | List user/guest orders |
-| PATCH | `/api/orders/[id]` | Update order status (staff) |
-| POST | `/api/guest/merge` | Link guest history to logged-in user |
+
+| Method | Route              | Purpose                                     |
+| ------ | ------------------ | ------------------------------------------- |
+| POST   | `/api/chat`        | Groq proxy + conversation audit             |
+| POST   | `/api/orders`      | Create order (server-side price validation) |
+| GET    | `/api/orders`      | List user/guest orders                      |
+| PATCH  | `/api/orders/[id]` | Update order status (staff)                 |
+| POST   | `/api/guest/merge` | Link guest history to logged-in user        |
+
 
 ## Security notes
 
