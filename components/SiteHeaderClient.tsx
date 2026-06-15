@@ -177,7 +177,7 @@ export function SiteHeaderClient({
               </button>
               {authOpen && (
                 <div className="site-header__auth-panel">
-                  <p className="site-header__auth-title">Login com magic link</p>
+                  <p className="site-header__auth-title">Entrar na conta</p>
                   <LoginForm compact onSuccess={() => setAuthOpen(false)} />
                 </div>
               )}
