@@ -33,7 +33,7 @@ export default async function MyOrdersPage() {
           </>
         )}
       </p>
-      <MyOrdersClient initialOrders={orders} isLoggedIn={Boolean(userId)} />
+      <MyOrdersClient initialOrders={orders} />
     </div>
   );
 }

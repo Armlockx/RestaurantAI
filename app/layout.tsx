@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { AppShell } from "@/components/AppShell";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -24,7 +25,9 @@ export default function RootLayout({
         <Suspense fallback={<header className="site-header site-header--loading" />}>
           <SiteHeader />
         </Suspense>
-        <main className="site-main">{children}</main>
+        <AppShell>
+          <main className="site-main">{children}</main>
+        </AppShell>
         <Analytics />
       </body>
     </html>

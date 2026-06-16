@@ -1,8 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useOrdersLive } from "@/components/OrdersLiveProvider";
 import { formatPreco } from "@/lib/menu-data";
-import { useIsLoggedIn } from "@/lib/use-order-live";
 import { useCart } from "./CartProvider";
 import { showToast } from "./ToastContainer";
 import { OrderStatusTracker } from "./OrderStatusTracker";
@@ -16,10 +16,11 @@ export function CheckoutForm() {
     totalCentavos,
     setCartOpen,
   } = useCart();
+  const { refreshOrders } = useOrdersLive();
   const [submitting, setSubmitting] = useState(false);
-  const [lastOrderId, setLastOrderId] = useState<string | null>(null);
+  const [trackOrderId, setTrackOrderId] = useState<string | null>(null);
+  const [bannerDismissed, setBannerDismissed] = useState(false);
   const [entrega, setEntrega] = useState("retirada");
-  const isLoggedIn = useIsLoggedIn();
 
   const close = () => setCheckoutOpen(false);
 
@@ -55,10 +56,13 @@ export function CheckoutForm() {
 
       if (!res.ok) throw new Error(data.error ?? "Erro ao confirmar pedido");
 
-      setLastOrderId(data.order!.id);
+      const orderId = data.order!.id;
+      setTrackOrderId(orderId);
+      setBannerDismissed(false);
       clear();
       close();
       setCartOpen(false);
+      await refreshOrders();
       showToast(
         `Pedido confirmado! Total: ${formatPreco(data.order!.total_centavos)}`
       );
@@ -170,11 +174,10 @@ export function CheckoutForm() {
         </div>
       </div>
 
-      {lastOrderId && (
+      {trackOrderId && !bannerDismissed && (
         <OrderStatusTracker
-          orderId={lastOrderId}
-          isLoggedIn={isLoggedIn}
-          onClose={() => setLastOrderId(null)}
+          orderId={trackOrderId}
+          onClose={() => setBannerDismissed(true)}
         />
       )}
     </>

@@ -5,7 +5,6 @@ import { MenuGrid } from "@/components/MenuGrid";
 import { CartPanel } from "@/components/CartPanel";
 import { ChatPanel } from "@/components/ChatPanel";
 import { CheckoutForm } from "@/components/CheckoutForm";
-import { ToastContainer } from "@/components/ToastContainer";
 import type { MenuItem } from "@/lib/types";
 
 export function HomeClient({ menuItems }: { menuItems: MenuItem[] }) {
@@ -22,7 +21,6 @@ export function HomeClient({ menuItems }: { menuItems: MenuItem[] }) {
       <CartPanel />
       <ChatPanel />
       <CheckoutForm />
-      <ToastContainer />
     </CartProvider>
   );
 }

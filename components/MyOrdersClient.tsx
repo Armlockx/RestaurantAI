@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useOrdersLive } from "@/components/OrdersLiveProvider";
 import { formatPreco } from "@/lib/menu-data";
 import { ORDER_STATUS_LABELS, orderStatusClass } from "@/lib/order-labels";
-import { useOrdersListLive } from "@/lib/use-order-live";
 import type { Order } from "@/lib/types";
 
 function formatOrderDate(iso: string): string {
@@ -25,14 +25,9 @@ function itemSummary(order: Order): string {
   return `${totalQty} itens — ${first} e mais ${items.length - 1}`;
 }
 
-export function MyOrdersClient({
-  initialOrders,
-  isLoggedIn,
-}: {
-  initialOrders: Order[];
-  isLoggedIn: boolean;
-}) {
-  const orders = useOrdersListLive(initialOrders, isLoggedIn);
+export function MyOrdersClient({ initialOrders }: { initialOrders: Order[] }) {
+  const { orders: liveOrders, isReady } = useOrdersLive();
+  const orders = isReady ? liveOrders : initialOrders;
 
   if (orders.length === 0) {
     return (

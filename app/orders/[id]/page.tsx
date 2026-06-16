@@ -28,5 +28,5 @@ export default async function OrderDetailPage({
   const order = await getOrderForRequester(id, userId, guestSessionId);
   if (!order) notFound();
 
-  return <OrderDetailClient order={order} isLoggedIn={Boolean(userId)} />;
+  return <OrderDetailClient order={order} />;
 }

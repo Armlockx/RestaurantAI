@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useOrdersLive } from "@/components/OrdersLiveProvider";
 import { formatPreco } from "@/lib/menu-data";
 import {
   ENTREGA_LABELS,
@@ -8,17 +9,12 @@ import {
   PAGAMENTO_LABELS,
   orderStatusClass,
 } from "@/lib/order-labels";
-import { useOrderStatusLive } from "@/lib/use-order-live";
 import type { Order } from "@/lib/types";
 
-export function OrderDetailClient({
-  order,
-  isLoggedIn,
-}: {
-  order: Order;
-  isLoggedIn: boolean;
-}) {
-  const status = useOrderStatusLive(order.id, order.status, isLoggedIn);
+export function OrderDetailClient({ order }: { order: Order }) {
+  const { orders } = useOrdersLive();
+  const liveStatus = orders.find((o) => o.id === order.id)?.status;
+  const status = liveStatus ?? order.status;
   const items = order.order_items ?? [];
 
   return (
