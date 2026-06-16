@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useOrdersLive } from "@/components/OrdersLiveProvider";
 import { formatPreco } from "@/lib/menu-data";
+import { markNotifyPromptAfterOrder } from "@/lib/browser-notifications";
 import { useCart } from "./CartProvider";
 import { showToast } from "./ToastContainer";
 import { OrderStatusTracker } from "./OrderStatusTracker";
@@ -59,6 +60,7 @@ export function CheckoutForm() {
       const orderId = data.order!.id;
       setTrackOrderId(orderId);
       setBannerDismissed(false);
+      markNotifyPromptAfterOrder();
       clear();
       close();
       setCartOpen(false);

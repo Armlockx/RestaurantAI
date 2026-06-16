@@ -14,6 +14,7 @@ Live stack: **Vercel** (app + API + Analytics) + **Supabase** (Postgres, Auth, R
 - **Header** — Global navigation with logged-in user info, role badge, and admin links for staff
 - **Admin** — `/admin/orders`, `/admin/conversations`, `/admin/menu` (staff/admin roles)
 - **Realtime** — Order status updates via Supabase Realtime
+- **Order notifications** — In-app toasts when the tab is visible; optional browser notifications when the tab is in the background (see below)
 - **Audit** — Conversation and order events stored for review
 - **Analytics** — [Vercel Web Analytics](https://vercel.com/docs/analytics) (`@vercel/analytics`) in the root layout
 
@@ -123,6 +124,26 @@ Primary login methods (header **Entrar** or `/auth/login`):
 | Magic link        | Collapsible alternative — unique link opens in the same browser      |
 
 After login, the header shows your email and role badge (Cliente / Staff / Admin). Staff and admin users see **Pedidos**, **Conversas**, and **Cardápio admin** in the navigation.
+
+## Order status notifications
+
+The app tracks your orders globally (`OrdersLiveProvider`) and notifies you when the restaurant changes status:
+
+| Tab state              | Behavior                                                                 |
+| ---------------------- | ------------------------------------------------------------------------ |
+| Visible (foreground)   | Toast in the corner of the page                                          |
+| Hidden (background)    | Browser notification (only if you granted permission)                    |
+
+**Opt-in:** After placing an order, a banner offers to enable browser notifications. You can also use **Alertas** in the header (shown while permission is still `default`).
+
+**Limitations:**
+
+- Requires a browser that supports the [Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API) (Chrome, Firefox, Edge, Safari desktop).
+- **iOS Safari** only supports web push/notifications for sites added to the Home Screen (PWA); background alerts may not work in a normal Safari tab.
+- **Android Chrome** generally works when permission is granted.
+- No Service Worker or push subscription in this version — notifications only fire while the page is open in a tab (polling or Realtime keeps sync alive).
+
+Implementation: `lib/browser-notifications.ts`, `components/NotificationPermissionBanner.tsx`, integrated in `notifyOrderStatusChange` (`lib/use-order-live.ts`).
 
 ## Deploy on Vercel
 

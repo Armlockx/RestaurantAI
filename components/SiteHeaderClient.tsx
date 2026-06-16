@@ -5,6 +5,11 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LoginForm } from "@/components/LoginForm";
+import {
+  getBrowserNotificationPermission,
+  isBrowserNotificationSupported,
+  requestBrowserNotificationPermission,
+} from "@/lib/browser-notifications";
 import { createClient } from "@/lib/supabase/client";
 import type { UserRole } from "@/lib/types";
 
@@ -38,6 +43,10 @@ export function SiteHeaderClient({
   const [menuOpen, setMenuOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [flash, setFlash] = useState("");
+  const [notifyPermission, setNotifyPermission] = useState<
+    NotificationPermission | "unsupported"
+  >("unsupported");
+  const [notifyRequesting, setNotifyRequesting] = useState(false);
 
   const loggedIn = Boolean(email);
   const adminDenied = searchParams.get("error") === "admin";
@@ -74,6 +83,25 @@ export function SiteHeaderClient({
       setFlash("Sem permissão para acessar o painel admin.");
     }
   }, [adminDenied]);
+
+  useEffect(() => {
+    setNotifyPermission(getBrowserNotificationPermission());
+  }, []);
+
+  const enableBrowserNotifications = async () => {
+    setNotifyRequesting(true);
+    try {
+      const permission = await requestBrowserNotificationPermission();
+      setNotifyPermission(permission);
+      if (permission === "granted") {
+        setFlash("Notificações do navegador ativadas.");
+      } else if (permission === "denied") {
+        setFlash("Notificações bloqueadas. Libere nas configurações do navegador.");
+      }
+    } finally {
+      setNotifyRequesting(false);
+    }
+  };
 
   const logout = async () => {
     if (!configured) return;
@@ -149,6 +177,20 @@ export function SiteHeaderClient({
           {!configured && (
             <span className="site-header__hint">Modo local (sem Supabase)</span>
           )}
+
+          {configured &&
+            isBrowserNotificationSupported() &&
+            notifyPermission === "default" && (
+              <button
+                type="button"
+                className="site-header__btn site-header__btn--ghost"
+                onClick={() => void enableBrowserNotifications()}
+                disabled={notifyRequesting}
+                title="Receber alertas quando o pedido mudar de status"
+              >
+                {notifyRequesting ? "…" : "Alertas"}
+              </button>
+            )}
 
           {configured && demoAdmin && (
             <span className="site-header__badge site-header__badge--admin">Demo admin</span>

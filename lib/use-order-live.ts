@@ -1,4 +1,5 @@
 import { showToast } from "@/components/ToastContainer";
+import { showOrderStatusBrowserNotification } from "@/lib/browser-notifications";
 import { ORDER_STATUS_LABELS } from "@/lib/order-labels";
 import type { Order, OrderStatus } from "@/lib/types";
 
@@ -9,7 +10,13 @@ export function notifyOrderStatusChange(
 ) {
   if (prev === next) return;
   const label = ORDER_STATUS_LABELS[next] ?? next;
-  showToast(`Pedido #${orderId.slice(0, 8)}: ${label}`);
+  const message = `Pedido #${orderId.slice(0, 8)}: ${label}`;
+
+  if (typeof document !== "undefined" && document.hidden) {
+    showOrderStatusBrowserNotification(orderId, next, message);
+  } else {
+    showToast(message);
+  }
 }
 
 export async function fetchOrderById(orderId: string): Promise<Order | null> {
