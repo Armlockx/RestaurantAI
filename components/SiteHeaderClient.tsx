@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -110,7 +111,16 @@ export function SiteHeaderClient({
       <div className="site-header__inner">
         <div className="site-header__brand-row">
           <Link href="/" className="site-header__brand" onClick={() => setMenuOpen(false)}>
-            RestaurantAI
+            <Image
+              src="/img/favicon.gif"
+              alt="RestaurantAI"
+              width={36}
+              height={36}
+              className="site-header__logo"
+              unoptimized
+              priority
+            />
+            <span className="site-header__brand-text">RestaurantAI</span>
           </Link>
           <button
             type="button"

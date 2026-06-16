@@ -7,6 +7,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "RestaurantAI — Cardápio",
   description: "Cardápio com assistente IA, carrinho e checkout",
+  icons: {
+    icon: "/img/favicon.gif",
+    shortcut: "/img/favicon.gif",
+  },
 };
 
 export default function RootLayout({
