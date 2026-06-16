@@ -2,12 +2,10 @@
 
 import { FormEvent, useState } from "react";
 import { formatPreco } from "@/lib/menu-data";
-import { ORDER_STATUS_LABELS } from "@/lib/order-labels";
+import { useIsLoggedIn } from "@/lib/use-order-live";
 import { useCart } from "./CartProvider";
 import { showToast } from "./ToastContainer";
 import { OrderStatusTracker } from "./OrderStatusTracker";
-
-const STATUS_LABELS = ORDER_STATUS_LABELS;
 
 export function CheckoutForm() {
   const {
@@ -21,6 +19,7 @@ export function CheckoutForm() {
   const [submitting, setSubmitting] = useState(false);
   const [lastOrderId, setLastOrderId] = useState<string | null>(null);
   const [entrega, setEntrega] = useState("retirada");
+  const isLoggedIn = useIsLoggedIn();
 
   const close = () => setCheckoutOpen(false);
 
@@ -174,8 +173,8 @@ export function CheckoutForm() {
       {lastOrderId && (
         <OrderStatusTracker
           orderId={lastOrderId}
+          isLoggedIn={isLoggedIn}
           onClose={() => setLastOrderId(null)}
-          labels={STATUS_LABELS}
         />
       )}
     </>

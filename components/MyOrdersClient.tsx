@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { formatPreco } from "@/lib/menu-data";
 import { ORDER_STATUS_LABELS, orderStatusClass } from "@/lib/order-labels";
+import { useOrdersListLive } from "@/lib/use-order-live";
 import type { Order } from "@/lib/types";
 
 function formatOrderDate(iso: string): string {
@@ -24,8 +25,16 @@ function itemSummary(order: Order): string {
   return `${totalQty} itens — ${first} e mais ${items.length - 1}`;
 }
 
-export function MyOrdersClient({ initialOrders }: { initialOrders: Order[] }) {
-  if (initialOrders.length === 0) {
+export function MyOrdersClient({
+  initialOrders,
+  isLoggedIn,
+}: {
+  initialOrders: Order[];
+  isLoggedIn: boolean;
+}) {
+  const orders = useOrdersListLive(initialOrders, isLoggedIn);
+
+  if (orders.length === 0) {
     return (
       <div className="my-orders-empty">
         <p>Você ainda não fez nenhum pedido.</p>
@@ -38,7 +47,7 @@ export function MyOrdersClient({ initialOrders }: { initialOrders: Order[] }) {
 
   return (
     <ul className="my-orders-list">
-      {initialOrders.map((order) => (
+      {orders.map((order) => (
         <li key={order.id}>
           <Link href={`/orders/${order.id}`} className="my-orders-card">
             <div className="my-orders-card__header">

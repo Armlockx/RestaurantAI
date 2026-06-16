@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from "react";
 
+let toastSeq = 0;
+
 export function ToastContainer() {
   const [toasts, setToasts] = useState<{ id: number; msg: string }[]>([]);
 
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      const id = Date.now();
+      const id = ++toastSeq;
       setToasts((t) => [...t, { id, msg: detail }]);
       setTimeout(() => {
         setToasts((t) => t.filter((x) => x.id !== id));

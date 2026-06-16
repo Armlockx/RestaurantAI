@@ -1,52 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { ORDER_STATUS_LABELS, orderStatusClass } from "@/lib/order-labels";
+import { useOrderStatusLive } from "@/lib/use-order-live";
+import type { OrderStatus } from "@/lib/types";
 
 interface Props {
   orderId: string;
+  initialStatus?: OrderStatus;
+  isLoggedIn: boolean;
   onClose: () => void;
-  labels: Record<string, string>;
 }
 
-export function OrderStatusTracker({ orderId, onClose, labels }: Props) {
-  const [status, setStatus] = useState("pending");
-
-  useEffect(() => {
-    if (!isSupabaseConfigured()) return;
-
-    const supabase = createClient();
-
-    const channel = supabase
-      .channel(`order-${orderId}`)
-      .on(
-        "postgres_changes",
-        {
-          event: "UPDATE",
-          schema: "public",
-          table: "orders",
-          filter: `id=eq.${orderId}`,
-        },
-        (payload) => {
-          const newStatus = (payload.new as { status?: string }).status;
-          if (newStatus) setStatus(newStatus);
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, [orderId]);
-
-  if (!isSupabaseConfigured()) return null;
+export function OrderStatusTracker({
+  orderId,
+  initialStatus = "pending",
+  isLoggedIn,
+  onClose,
+}: Props) {
+  const status = useOrderStatusLive(orderId, initialStatus, isLoggedIn);
 
   return (
     <div className="order-tracker">
       <p>
         Pedido <strong>{orderId.slice(0, 8)}</strong> — Status:{" "}
-        <strong>{labels[status] ?? status}</strong>
+        <strong>{ORDER_STATUS_LABELS[status] ?? status}</strong>
       </p>
       <button type="button" className="order-tracker-close" onClick={onClose}>
         Fechar

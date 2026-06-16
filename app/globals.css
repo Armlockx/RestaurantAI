@@ -1561,9 +1561,15 @@ h1 {
 }
 
 .order-detail__meta {
-    margin: 0 0 20px;
+    margin: 0 0 8px;
     font-size: 13px;
     color: #666;
+}
+
+.order-detail__live-hint {
+    margin: 0 0 20px;
+    font-size: 12px;
+    color: #888;
 }
 
 .order-detail__section {
