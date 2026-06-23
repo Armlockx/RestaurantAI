@@ -10,6 +10,7 @@ import {
   isBrowserNotificationSupported,
   requestBrowserNotificationPermission,
 } from "@/lib/browser-notifications";
+import { FAVICON_URL } from "@/lib/constants";
 import { createClient } from "@/lib/supabase/client";
 import type { UserRole } from "@/lib/types";
 
@@ -140,7 +141,7 @@ export function SiteHeaderClient({
         <div className="site-header__brand-row">
           <Link href="/" className="site-header__brand" onClick={() => setMenuOpen(false)}>
             <Image
-              src="/img/favicon.gif"
+              src={FAVICON_URL}
               alt="RestaurantAI"
               width={36}
               height={36}
