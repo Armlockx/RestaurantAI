@@ -1,3 +1,4 @@
+import { FAVICON_URL } from "@/lib/constants";
 import { ORDER_STATUS_LABELS } from "@/lib/order-labels";
 import type { OrderStatus } from "@/lib/types";
 
@@ -58,7 +59,7 @@ export function showOrderStatusBrowserNotification(
   try {
     const notification = new Notification("RestaurantAI — Atualização do pedido", {
       body,
-      icon: "/img/favicon.gif",
+      icon: FAVICON_URL,
       tag: `order-${orderId}`,
     });
     notification.onclick = () => {
