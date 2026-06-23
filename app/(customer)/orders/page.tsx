@@ -23,9 +23,9 @@ export default async function MyOrdersPage() {
   const orders = await getOrdersForUser(userId, guestSessionId);
 
   return (
-    <div className="my-orders-page">
-      <h1>Meus pedidos</h1>
-      <p className="hint">
+    <div className="mx-auto max-w-2xl">
+      <h1 className="mb-2 text-xl font-extrabold tracking-tight text-text">Meus pedidos</h1>
+      <p className="mb-6 text-sm text-text-muted">
         Acompanhe o status dos seus pedidos.{" "}
         {!userId && guestSessionId && (
           <>
