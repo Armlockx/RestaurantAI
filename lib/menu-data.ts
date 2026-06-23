@@ -1,3 +1,4 @@
+import { menuItemImageUrl } from "./constants";
 import type { MenuItem } from "./types";
 
 function item(
@@ -22,7 +23,7 @@ function item(
     tags,
     ingredientes,
     porcao,
-    imagem_url: `/img/itens/${img}`,
+    imagem_url: menuItemImageUrl(img),
     ativo: true,
     menu_categories: { nome: cat, ordem: 0 },
   };
