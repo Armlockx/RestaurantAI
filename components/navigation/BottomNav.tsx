@@ -76,7 +76,7 @@ export function BottomNav() {
 
   return (
     <nav
-      className="fixed inset-x-4 bottom-4 z-40 pb-safe-bottom md:hidden"
+      className="fixed inset-x-4 bottom-floating-bottom z-40 md:hidden"
       aria-label="Navegação principal"
     >
       <div className="mx-auto flex max-w-lg items-end justify-between gap-1 rounded-nav border border-border bg-surface/95 px-2 py-2 shadow-lg backdrop-blur-md">

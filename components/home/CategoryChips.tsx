@@ -15,7 +15,7 @@ export function CategoryChips({ categories, className }: CategoryChipsProps) {
       <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-text-muted">
         Categorias
       </h2>
-      <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 snap-x snap-mandatory scroll-px-1">
+      <div className="hide-scrollbar -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 snap-x snap-mandatory scroll-px-1">
         {categories.map((category) => (
           <Link
             key={category.id}

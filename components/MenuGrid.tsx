@@ -175,7 +175,7 @@ export function MenuGrid({
       <section aria-label={ariaLabel}>
         <div
           className={cn(
-            "-mx-1 flex gap-3 overflow-x-auto px-1 pb-2 snap-x snap-mandatory scroll-px-1",
+            "hide-scrollbar -mx-1 flex gap-3 overflow-x-auto px-1 pb-2 snap-x snap-mandatory scroll-px-1",
             "md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:pb-0 lg:grid-cols-3",
             className
           )}

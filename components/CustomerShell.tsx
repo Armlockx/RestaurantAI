@@ -21,7 +21,7 @@ export function CustomerShell({ menuItems, children }: CustomerShellProps) {
   return (
     <CartProvider menuItems={menuItems}>
       <ChatProvider>
-        <div className="pb-bottom-nav md:pb-0">{children}</div>
+        <div className="pb-bottom-nav-safe md:pb-0">{children}</div>
         <CartPanel />
         <CheckoutForm />
         <ChatEntryButton />

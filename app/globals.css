@@ -17,6 +17,8 @@
 
     --spacing-safe-bottom: env(safe-area-inset-bottom, 0px);
     --spacing-bottom-nav: 5.5rem;
+    --spacing-bottom-nav-safe: calc(var(--spacing-bottom-nav) + env(safe-area-inset-bottom, 0px));
+    --spacing-floating-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
 }
 
 @keyframes chat-enter {
@@ -71,4 +73,14 @@ body {
     margin: 0;
     background: #fff;
     color: #111;
+    min-height: 100dvh;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
 }
