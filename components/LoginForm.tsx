@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { cn } from "@/lib/utils";
 
 type LoginFormProps = {
   compact?: boolean;
@@ -12,6 +13,10 @@ type LoginFormProps = {
 type LoginTab = "password" | "otp";
 type OtpStep = "send" | "verify";
 type MessageKind = "info" | "success" | "error";
+
+const inputClass =
+  "rounded-button border border-border px-3 py-2 text-sm outline-none focus:border-brand";
+const labelClass = "flex flex-col gap-1.5 text-xs font-semibold text-text";
 
 export function LoginForm({ compact, onSuccess }: LoginFormProps) {
   const router = useRouter();
@@ -24,8 +29,6 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [messageKind, setMessageKind] = useState<MessageKind>("info");
-
-  const formClass = compact ? "login-form login-form--compact" : "login-form";
 
   const setFeedback = (text: string, kind: MessageKind = "info") => {
     setMessage(text);
@@ -144,21 +147,24 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
     setMessage("");
   };
 
-  const messageClass =
-    messageKind === "error"
-      ? "auth-message auth-message--error"
-      : messageKind === "success"
-        ? "auth-message auth-message--success"
-        : "auth-message";
+  const tabClass = (active: boolean) =>
+    cn(
+      "rounded-md px-2 py-2 text-[11px] font-semibold leading-tight transition-colors",
+      active ? "bg-surface text-text shadow-sm" : "text-text-muted"
+    );
 
   return (
-    <div className={formClass}>
-      <div className="login-tabs" role="tablist" aria-label="Formas de login">
+    <div className={cn("flex flex-col gap-2.5", compact && "gap-2")}>
+      <div
+        className="grid grid-cols-2 gap-1 rounded-button bg-surface-muted p-1"
+        role="tablist"
+        aria-label="Formas de login"
+      >
         <button
           type="button"
           role="tab"
           aria-selected={tab === "password"}
-          className={tab === "password" ? "login-tab login-tab--active" : "login-tab"}
+          className={tabClass(tab === "password")}
           onClick={() => switchTab("password")}
         >
           E-mail e senha
@@ -167,7 +173,7 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
           type="button"
           role="tab"
           aria-selected={tab === "otp"}
-          className={tab === "otp" ? "login-tab login-tab--active" : "login-tab"}
+          className={tabClass(tab === "otp")}
           onClick={() => switchTab("otp")}
         >
           Código por e-mail
@@ -175,11 +181,11 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
       </div>
 
       {tab === "password" && (
-        <form onSubmit={loginWithPassword} className="login-panel">
-          <p className="login-panel__hint">
+        <form onSubmit={loginWithPassword} className="flex flex-col gap-2.5">
+          <p className="m-0 text-[11px] leading-snug text-text-muted">
             Use o e-mail e a senha da sua conta. Ideal para acesso frequente ao painel admin.
           </p>
-          <label>
+          <label className={labelClass}>
             E-mail
             <input
               type="email"
@@ -188,9 +194,10 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
               placeholder="seu@email.com"
               required
               autoComplete="email"
+              className={inputClass}
             />
           </label>
-          <label>
+          <label className={labelClass}>
             Senha
             <input
               type="password"
@@ -200,21 +207,26 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
               required
               autoComplete="current-password"
               minLength={6}
+              className={inputClass}
             />
           </label>
-          <button type="submit" disabled={loading}>
+          <button
+            type="submit"
+            disabled={loading}
+            className="rounded-button bg-brand px-3 py-2.5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-neutral-800 disabled:opacity-60"
+          >
             {loading ? "Entrando…" : "Entrar"}
           </button>
         </form>
       )}
 
       {tab === "otp" && otpStep === "send" && (
-        <form onSubmit={sendOtp} className="login-panel">
-          <p className="login-panel__hint">
+        <form onSubmit={sendOtp} className="flex flex-col gap-2.5">
+          <p className="m-0 text-[11px] leading-snug text-text-muted">
             Enviaremos um <strong>código de 6 dígitos</strong> para o seu e-mail. Digite o código aqui
             no site — sem precisar clicar em link.
           </p>
-          <label>
+          <label className={labelClass}>
             E-mail
             <input
               type="email"
@@ -223,20 +235,25 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
               placeholder="seu@email.com"
               required
               autoComplete="email"
+              className={inputClass}
             />
           </label>
-          <button type="submit" disabled={loading}>
+          <button
+            type="submit"
+            disabled={loading}
+            className="rounded-button bg-brand px-3 py-2.5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-neutral-800 disabled:opacity-60"
+          >
             {loading ? "Enviando…" : "Enviar código"}
           </button>
         </form>
       )}
 
       {tab === "otp" && otpStep === "verify" && (
-        <form onSubmit={verifyOtp} className="login-panel">
-          <p className="login-panel__hint">
+        <form onSubmit={verifyOtp} className="flex flex-col gap-2.5">
+          <p className="m-0 text-[11px] leading-snug text-text-muted">
             Código enviado para <strong>{email}</strong>. Confira também a pasta de spam.
           </p>
-          <label>
+          <label className={labelClass}>
             Código de 6 dígitos
             <input
               type="text"
@@ -248,14 +265,19 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
               required
               maxLength={6}
               pattern="\d{6}"
+              className={inputClass}
             />
           </label>
-          <button type="submit" disabled={loading}>
+          <button
+            type="submit"
+            disabled={loading}
+            className="rounded-button bg-brand px-3 py-2.5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-neutral-800 disabled:opacity-60"
+          >
             {loading ? "Verificando…" : "Confirmar código"}
           </button>
           <button
             type="button"
-            className="login-link-btn"
+            className="bg-transparent p-0 text-left text-[11px] text-text-muted underline"
             onClick={() => {
               setOtpStep("send");
               setOtpCode("");
@@ -267,10 +289,10 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
         </form>
       )}
 
-      <div className="login-magic">
+      <div className="mt-1 border-t border-border pt-2.5">
         <button
           type="button"
-          className="login-magic__toggle"
+          className="w-full bg-transparent p-0 text-left text-[11px] text-text-muted transition-colors hover:text-text"
           aria-expanded={magicLinkOpen}
           onClick={() => setMagicLinkOpen((v) => !v)}
         >
@@ -278,17 +300,17 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
         </button>
 
         {magicLinkOpen && (
-          <div className="login-magic__body">
-            <p className="login-magic__hint">
+          <div className="mt-2 flex flex-col gap-2">
+            <p className="m-0 text-[11px] leading-snug text-text-muted">
               Enviaremos um <strong>link único</strong> para o e-mail informado acima. Abra o link{" "}
               <strong>no mesmo navegador</strong> em que você está usando o site para concluir o
-              login automaticamente. Útil se você não tiver senha ou preferir não digitar o código.
+              login automaticamente.
             </p>
             <button
               type="button"
-              className="login-magic__submit"
               disabled={loading || !email.trim()}
               onClick={sendMagicLink}
+              className="rounded-button border border-border bg-surface-muted px-3 py-2 text-xs font-semibold text-text transition-colors hover:bg-surface disabled:opacity-50"
             >
               {loading ? "Enviando…" : "Enviar link de acesso"}
             </button>
@@ -296,7 +318,19 @@ export function LoginForm({ compact, onSuccess }: LoginFormProps) {
         )}
       </div>
 
-      {message && <p className={messageClass}>{message}</p>}
+      {message && (
+        <p
+          className={cn(
+            "text-xs",
+            compact && "m-0",
+            messageKind === "error" && "text-red-800",
+            messageKind === "success" && "text-emerald-800",
+            messageKind === "info" && "text-text-muted"
+          )}
+        >
+          {message}
+        </p>
+      )}
     </div>
   );
 }

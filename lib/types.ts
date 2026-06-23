@@ -23,6 +23,13 @@ export interface MenuItem {
   menu_categories?: { nome: string; ordem: number };
 }
 
+export interface MenuCategory {
+  id: string;
+  nome: string;
+  ordem: number;
+  count: number;
+}
+
 export interface CartItem {
   id: string;
   menu_item_id: string;

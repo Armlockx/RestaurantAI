@@ -21,9 +21,15 @@ export function ToastContainer() {
   }, []);
 
   return (
-    <div className="toast-container" aria-live="polite">
+    <div
+      className="pointer-events-none fixed right-4 top-4 z-[10001] flex flex-col gap-2"
+      aria-live="polite"
+    >
       {toasts.map((t) => (
-        <div key={t.id} className="toast is-visible">
+        <div
+          key={t.id}
+          className="rounded-button bg-brand px-3.5 py-2.5 text-sm text-brand-foreground shadow-lg animate-chat-enter"
+        >
           {t.msg}
         </div>
       ))}

@@ -31,9 +31,12 @@ export function MyOrdersClient({ initialOrders }: { initialOrders: Order[] }) {
 
   if (orders.length === 0) {
     return (
-      <div className="my-orders-empty">
-        <p>Você ainda não fez nenhum pedido.</p>
-        <Link href="/" className="my-orders-empty__link">
+      <div className="py-8 text-center text-text-muted">
+        <p className="m-0">Você ainda não fez nenhum pedido.</p>
+        <Link
+          href="/"
+          className="mt-3 inline-block font-semibold text-text hover:underline"
+        >
           Ver cardápio
         </Link>
       </div>
@@ -41,22 +44,32 @@ export function MyOrdersClient({ initialOrders }: { initialOrders: Order[] }) {
   }
 
   return (
-    <ul className="my-orders-list">
+    <ul className="m-0 flex list-none flex-col gap-3 p-0">
       {orders.map((order) => (
         <li key={order.id}>
-          <Link href={`/orders/${order.id}`} className="my-orders-card">
-            <div className="my-orders-card__header">
+          <Link
+            href={`/orders/${order.id}`}
+            className="block rounded-card border border-border bg-surface p-4 text-inherit no-underline shadow-sm transition-all hover:border-neutral-300 hover:shadow-md"
+          >
+            <div className="mb-2 flex items-center justify-between gap-3">
               <span className={orderStatusClass(order.status)}>
                 {ORDER_STATUS_LABELS[order.status]}
               </span>
-              <time className="my-orders-card__date" dateTime={order.created_at}>
+              <time
+                className="text-xs text-text-muted"
+                dateTime={order.created_at}
+              >
                 {formatOrderDate(order.created_at)}
               </time>
             </div>
-            <p className="my-orders-card__items">{itemSummary(order)}</p>
-            <div className="my-orders-card__footer">
-              <span className="my-orders-card__total">{formatPreco(order.total_centavos)}</span>
-              <span className="my-orders-card__cta">Ver detalhes →</span>
+            <p className="mb-3 text-sm leading-snug text-text-muted">
+              {itemSummary(order)}
+            </p>
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-[15px] font-bold text-text">
+                {formatPreco(order.total_centavos)}
+              </span>
+              <span className="text-xs text-text-muted">Ver detalhes →</span>
             </div>
           </Link>
         </li>
