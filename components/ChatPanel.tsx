@@ -2,6 +2,7 @@
 
 import { FormEvent, useRef, useState } from "react";
 import Image from "next/image";
+import { AI_ICON_URL } from "@/lib/constants";
 import type { CartAction, ChatMessage } from "@/lib/types";
 import { useCart } from "./CartProvider";
 import { showToast } from "./ToastContainer";
@@ -128,7 +129,7 @@ export function ChatPanel() {
         aria-label="Abrir assistente do cardápio"
       >
         <Image
-          src="/img/ai_icon.png"
+          src={AI_ICON_URL}
           alt="Assistente IA"
           className="chat-fab-img"
           width={32}
