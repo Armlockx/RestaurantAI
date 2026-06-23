@@ -41,11 +41,15 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body>
         <SerwistProvider swUrl="/sw.js">
-          <Suspense fallback={<header className="site-header site-header--loading" />}>
+          <Suspense
+            fallback={
+              <header className="sticky top-0 z-[10000] min-h-14 border-b border-neutral-800 bg-brand" />
+            }
+          >
             <SiteHeader />
           </Suspense>
           <AppShell>
-            <main className="site-main">{children}</main>
+            <main className="mx-auto max-w-7xl px-4 py-6 md:px-6">{children}</main>
           </AppShell>
           <Analytics />
         </SerwistProvider>

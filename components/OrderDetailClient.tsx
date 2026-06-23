@@ -18,18 +18,27 @@ export function OrderDetailClient({ order }: { order: Order }) {
   const items = order.order_items ?? [];
 
   return (
-    <div className="my-orders-page">
-      <p className="my-orders-back">
-        <Link href="/orders">← Voltar aos pedidos</Link>
+    <div className="mx-auto max-w-2xl">
+      <p className="mb-4 text-sm">
+        <Link
+          href="/orders"
+          className="text-text-muted no-underline transition-colors hover:text-text hover:underline"
+        >
+          ← Voltar aos pedidos
+        </Link>
       </p>
 
-      <div className="order-detail">
-        <div className="order-detail__header">
-          <h1>Pedido #{order.id.slice(0, 8)}</h1>
-          <span className={orderStatusClass(status)}>{ORDER_STATUS_LABELS[status]}</span>
+      <div className="rounded-card border border-border bg-surface-muted p-5">
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-3">
+          <h1 className="m-0 text-[22px] font-bold text-text">
+            Pedido #{order.id.slice(0, 8)}
+          </h1>
+          <span className={orderStatusClass(status)}>
+            {ORDER_STATUS_LABELS[status]}
+          </span>
         </div>
 
-        <p className="order-detail__meta">
+        <p className="mb-2 text-sm text-text-muted">
           Realizado em{" "}
           {new Date(order.created_at).toLocaleString("pt-BR", {
             day: "2-digit",
@@ -40,15 +49,20 @@ export function OrderDetailClient({ order }: { order: Order }) {
           })}
         </p>
 
-        <p className="order-detail__live-hint">
+        <p className="mb-5 text-xs text-text-muted">
           O status atualiza automaticamente quando o restaurante alterar seu pedido.
         </p>
 
-        <section className="order-detail__section">
-          <h2>Itens</h2>
-          <ul className="order-detail__items">
+        <section className="border-t border-border pt-4">
+          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-text-muted">
+            Itens
+          </h2>
+          <ul className="m-0 mb-3 list-none p-0">
             {items.map((item) => (
-              <li key={item.id} className="order-detail__item">
+              <li
+                key={item.id}
+                className="flex justify-between gap-3 border-b border-border py-2 text-sm last:border-b-0"
+              >
                 <span>
                   {item.quantidade}× {item.nome_snapshot}
                 </span>
@@ -56,42 +70,34 @@ export function OrderDetailClient({ order }: { order: Order }) {
               </li>
             ))}
           </ul>
-          <p className="order-detail__total">
+          <p className="m-0 text-right text-[15px] text-text">
             Total: <strong>{formatPreco(order.total_centavos)}</strong>
           </p>
         </section>
 
-        <section className="order-detail__section">
-          <h2>Entrega e pagamento</h2>
-          <dl className="order-detail__dl">
-            <div>
-              <dt>Cliente</dt>
-              <dd>{order.cliente_nome}</dd>
-            </div>
-            <div>
-              <dt>Telefone</dt>
-              <dd>{order.cliente_telefone}</dd>
-            </div>
-            <div>
-              <dt>Entrega</dt>
-              <dd>{ENTREGA_LABELS[order.entrega_tipo] ?? order.entrega_tipo}</dd>
-            </div>
-            {order.endereco && (
-              <div>
-                <dt>Endereço</dt>
-                <dd>{order.endereco}</dd>
-              </div>
-            )}
-            <div>
-              <dt>Pagamento</dt>
-              <dd>{PAGAMENTO_LABELS[order.pagamento] ?? order.pagamento}</dd>
-            </div>
-            {order.observacoes && (
-              <div>
-                <dt>Observações</dt>
-                <dd>{order.observacoes}</dd>
-              </div>
-            )}
+        <section className="mt-5 border-t border-border pt-4">
+          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-text-muted">
+            Entrega e pagamento
+          </h2>
+          <dl className="m-0 grid gap-3">
+            {[
+              ["Cliente", order.cliente_nome],
+              ["Telefone", order.cliente_telefone],
+              ["Entrega", ENTREGA_LABELS[order.entrega_tipo] ?? order.entrega_tipo],
+              order.endereco ? ["Endereço", order.endereco] : null,
+              ["Pagamento", PAGAMENTO_LABELS[order.pagamento] ?? order.pagamento],
+              order.observacoes ? ["Observações", order.observacoes] : null,
+            ]
+              .filter(Boolean)
+              .map((row) => (
+                <div
+                  key={row![0]}
+                  className="grid gap-0.5 text-sm sm:grid-cols-[120px_1fr] sm:gap-2"
+                >
+                  <dt className="font-semibold text-text-muted">{row![0]}</dt>
+                  <dd className="m-0 text-text">{row![1]}</dd>
+                </div>
+              ))}
           </dl>
         </section>
       </div>
