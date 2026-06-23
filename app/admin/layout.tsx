@@ -12,9 +12,11 @@ export default async function AdminLayout({
 
   if (demoAdmin) {
     return (
-      <div className="admin-shell">
-        <p className="admin-demo-banner">Modo demo (sem Supabase)</p>
-        <div className="admin-main">{children}</div>
+      <div className="mx-auto max-w-5xl">
+        <p className="mb-4 rounded-button bg-amber-50 px-3 py-2 text-sm text-amber-900">
+          Modo demo (sem Supabase)
+        </p>
+        {children}
       </div>
     );
   }
@@ -37,9 +39,5 @@ export default async function AdminLayout({
     redirect("/");
   }
 
-  return (
-    <div className="admin-shell">
-      <div className="admin-main">{children}</div>
-    </div>
-  );
+  return <div className="mx-auto max-w-5xl">{children}</div>;
 }

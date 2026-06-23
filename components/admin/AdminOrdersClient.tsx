@@ -59,37 +59,38 @@ export function AdminOrdersClient({
   };
 
   if (!orders.length) {
-    return <p>Nenhum pedido ainda.</p>;
+    return <p className="text-sm text-text-muted">Nenhum pedido ainda.</p>;
   }
 
   return (
-    <div className="admin-table-wrap">
-      <table className="admin-table">
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse text-sm">
         <thead>
-          <tr>
-            <th>ID</th>
-            <th>Cliente</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>Data</th>
+          <tr className="border-b border-border bg-surface-muted">
+            <th className="px-3 py-2 text-left font-semibold text-text">ID</th>
+            <th className="px-3 py-2 text-left font-semibold text-text">Cliente</th>
+            <th className="px-3 py-2 text-left font-semibold text-text">Total</th>
+            <th className="px-3 py-2 text-left font-semibold text-text">Status</th>
+            <th className="px-3 py-2 text-left font-semibold text-text">Data</th>
           </tr>
         </thead>
         <tbody>
           {orders.map((o) => (
-            <tr key={o.id}>
-              <td>{o.id.slice(0, 8)}</td>
-              <td>
+            <tr key={o.id} className="border-b border-border">
+              <td className="px-3 py-2 font-mono text-xs">{o.id.slice(0, 8)}</td>
+              <td className="px-3 py-2">
                 {o.cliente_nome}
                 <br />
-                <small>{o.cliente_telefone}</small>
+                <small className="text-text-muted">{o.cliente_telefone}</small>
               </td>
-              <td>{formatPreco(o.total_centavos)}</td>
-              <td>
+              <td className="px-3 py-2">{formatPreco(o.total_centavos)}</td>
+              <td className="px-3 py-2">
                 <select
                   value={o.status}
                   onChange={(e) =>
                     updateStatus(o.id, e.target.value as OrderStatus)
                   }
+                  className="rounded-button border border-border px-2 py-1 text-sm outline-none focus:border-brand"
                 >
                   {STATUSES.map((s) => (
                     <option key={s} value={s}>
@@ -98,7 +99,9 @@ export function AdminOrdersClient({
                   ))}
                 </select>
               </td>
-              <td>{new Date(o.created_at).toLocaleString("pt-BR")}</td>
+              <td className="px-3 py-2 whitespace-nowrap text-text-muted">
+                {new Date(o.created_at).toLocaleString("pt-BR")}
+              </td>
             </tr>
           ))}
         </tbody>

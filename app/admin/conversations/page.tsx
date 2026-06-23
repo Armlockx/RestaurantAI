@@ -13,7 +13,9 @@ export default async function AdminConversationsPage() {
 
   return (
     <>
-      <h1>Conversas (auditoria IA)</h1>
+      <h1 className="mb-4 text-xl font-extrabold tracking-tight text-text">
+        Conversas (auditoria IA)
+      </h1>
       <AdminConversationsClient
         conversations={conversations}
         initialConversationId={firstId ?? null}
