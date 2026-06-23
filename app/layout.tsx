@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AppShell } from "@/components/AppShell";
 import { SiteHeader } from "@/components/SiteHeader";
+import { FAVICON_URL } from "@/lib/constants";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -9,8 +10,8 @@ export const metadata: Metadata = {
   title: "RestaurantAI — Cardápio",
   description: "Cardápio com assistente IA, carrinho e checkout",
   icons: {
-    icon: "/img/favicon.gif",
-    shortcut: "/img/favicon.gif",
+    icon: FAVICON_URL,
+    shortcut: FAVICON_URL,
   },
 };
 
