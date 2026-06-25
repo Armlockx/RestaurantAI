@@ -5,6 +5,7 @@
 
     --color-brand: #111111;
     --color-brand-foreground: #ffffff;
+    --color-brand-hover: #262626;
     --color-surface: #ffffff;
     --color-surface-muted: #f5f5f5;
     --color-border: #eeeeee;
@@ -35,10 +36,10 @@
 @keyframes chat-pulse {
     0%,
     100% {
-        box-shadow: 0 0 0 0 rgba(17, 17, 17, 0.35);
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-brand) 35%, transparent);
     }
     50% {
-        box-shadow: 0 0 0 10px rgba(17, 17, 17, 0);
+        box-shadow: 0 0 0 10px color-mix(in srgb, var(--color-brand) 0%, transparent);
     }
 }
 
@@ -64,16 +65,183 @@
     animation: chat-badge 1.2s ease-in-out infinite;
 }
 
-:root {
+/* ── Theme: Light (default) ── */
+:root,
+[data-theme="light"] {
     color-scheme: light;
+    --color-brand: #111111;
+    --color-brand-foreground: #ffffff;
+    --color-brand-hover: #262626;
+    --color-surface: #ffffff;
+    --color-surface-muted: #f5f5f5;
+    --color-border: #eeeeee;
+    --color-text: #111111;
+    --color-text-muted: #555555;
+    --app-bg-base: #ffffff;
+    --app-texture-image: none;
+    --app-texture-opacity: 0;
+    --app-texture-blend: normal;
+    --app-surface-backdrop: 1;
+}
+
+/* ── Theme: Dark ── */
+[data-theme="dark"] {
+    color-scheme: dark;
+    --color-brand: #f5f5f5;
+    --color-brand-foreground: #111111;
+    --color-brand-hover: #e0e0e0;
+    --color-surface: #1a1a1a;
+    --color-surface-muted: #262626;
+    --color-border: #333333;
+    --color-text: #f0f0f0;
+    --color-text-muted: #a3a3a3;
+    --app-bg-base: #0f0f0f;
+    --app-texture-image: none;
+    --app-texture-opacity: 0;
+    --app-texture-blend: normal;
+    --app-surface-backdrop: 1;
+}
+
+/* ── Theme: Wood (tábua de madeira) ── */
+[data-theme="wood"] {
+    color-scheme: light;
+    --color-brand: #5c3d2e;
+    --color-brand-foreground: #fff8f0;
+    --color-brand-hover: #4a3125;
+    --color-surface: rgba(255, 248, 240, 0.94);
+    --color-surface-muted: rgba(243, 228, 208, 0.9);
+    --color-border: #d4b896;
+    --color-text: #3d2817;
+    --color-text-muted: #6b4c35;
+    --app-bg-base: #e8d4b8;
+    --app-texture-opacity: 0.55;
+    --app-texture-blend: multiply;
+    --app-surface-backdrop: 0.94;
+    --app-texture-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Crect fill='%23c9a882' width='120' height='120'/%3E%3Cpath d='M0 20h120M0 45h120M0 70h120M0 95h120' stroke='%23a67c52' stroke-width='0.8' opacity='0.5'/%3E%3Cpath d='M20 0v120M55 0v120M90 0v120' stroke='%23b8916a' stroke-width='0.5' opacity='0.3'/%3E%3Cpath d='M0 30c20-5 40 5 60 0s40 5 60 0M0 60c15 8 35-3 55 5s45-5 65 3M0 90c25-3 45 7 65 0s35 5 55-2' stroke='%238b6914' stroke-width='0.6' opacity='0.25' fill='none'/%3E%3C/svg%3E");
+}
+
+/* ── Theme: Marble (mármore de restaurante) ── */
+[data-theme="marble"] {
+    color-scheme: light;
+    --color-brand: #2c2c2c;
+    --color-brand-foreground: #ffffff;
+    --color-brand-hover: #1a1a1a;
+    --color-surface: rgba(255, 255, 255, 0.92);
+    --color-surface-muted: rgba(240, 238, 235, 0.88);
+    --color-border: #d4d0cb;
+    --color-text: #1a1a1a;
+    --color-text-muted: #5c5c5c;
+    --app-bg-base: #e8e4df;
+    --app-texture-opacity: 0.45;
+    --app-texture-blend: overlay;
+    --app-surface-backdrop: 0.92;
+    --app-texture-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%23f0eeeb' width='200' height='200'/%3E%3Cpath d='M0 100c30-40 70 20 100 0s70-30 100 10' stroke='%23c8c4be' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3Cpath d='M20 0c20 50 10 90 40 130s30 50 10 70M80 0c-10 60 20 100 0 160M140 0c30 40 0 80 20 120s40 60 20 80' stroke='%23b8b4ae' stroke-width='0.8' fill='none' opacity='0.4'/%3E%3Cpath d='M50 50c10-15 25-10 35 5s20 25 35 15M120 80c15-20 30-5 40 15' stroke='%23d8d4cf' stroke-width='1' fill='none' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* ── Theme: Linen (toalha de mesa xadrez) ── */
+[data-theme="linen"] {
+    color-scheme: light;
+    --color-brand: #8b4513;
+    --color-brand-foreground: #fffaf5;
+    --color-brand-hover: #6d3610;
+    --color-surface: rgba(255, 250, 245, 0.93);
+    --color-surface-muted: rgba(250, 246, 240, 0.9);
+    --color-border: #d4c4a8;
+    --color-text: #3d2b1f;
+    --color-text-muted: #6b5744;
+    --app-bg-base: #f5ebe0;
+    --app-texture-opacity: 0.35;
+    --app-texture-blend: multiply;
+    --app-surface-backdrop: 0.93;
+    --app-texture-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect fill='%23faf6f0' width='40' height='40'/%3E%3Crect fill='%23e8dcc8' x='0' y='0' width='20' height='20'/%3E%3Crect fill='%23e8dcc8' x='20' y='20' width='20' height='20'/%3E%3Cline x1='0' y1='0' x2='40' y2='40' stroke='%23d4c4a8' stroke-width='0.3' opacity='0.5'/%3E%3Cline x1='40' y1='0' x2='0' y2='40' stroke='%23d4c4a8' stroke-width='0.3' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* ── Theme: Terracotta (forno / pizza) ── */
+[data-theme="terracotta"] {
+    color-scheme: light;
+    --color-brand: #a0522d;
+    --color-brand-foreground: #fff8f0;
+    --color-brand-hover: #8b4513;
+    --color-surface: rgba(255, 248, 240, 0.93);
+    --color-surface-muted: rgba(245, 230, 216, 0.9);
+    --color-border: #d4956a;
+    --color-text: #4a2810;
+    --color-text-muted: #7a4a28;
+    --app-bg-base: #f0d4b8;
+    --app-texture-opacity: 0.4;
+    --app-texture-blend: multiply;
+    --app-surface-backdrop: 0.93;
+    --app-texture-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect fill='%23f5e6d8' width='80' height='80'/%3E%3Ccircle cx='40' cy='40' r='28' fill='none' stroke='%23d4956a' stroke-width='0.8' opacity='0.35'/%3E%3Ccircle cx='40' cy='40' r='20' fill='none' stroke='%23c4784a' stroke-width='0.5' opacity='0.25'/%3E%3Ccircle cx='40' cy='40' r='12' fill='none' stroke='%23b8653a' stroke-width='0.4' opacity='0.2'/%3E%3Ccircle cx='15' cy='15' r='3' fill='%23d4956a' opacity='0.15'/%3E%3Ccircle cx='65' cy='20' r='2' fill='%23c4784a' opacity='0.12'/%3E%3Ccircle cx='20' cy='65' r='2.5' fill='%23b8653a' opacity='0.1'/%3E%3C/svg%3E");
+}
+
+/* ── Theme: Delivery (embalagem / entrega) ── */
+[data-theme="delivery"] {
+    color-scheme: light;
+    --color-brand: #e85d04;
+    --color-brand-foreground: #ffffff;
+    --color-brand-hover: #d45103;
+    --color-surface: rgba(255, 255, 255, 0.94);
+    --color-surface-muted: rgba(255, 248, 240, 0.92);
+    --color-border: #ffd6a5;
+    --color-text: #1a1a1a;
+    --color-text-muted: #5c4a3a;
+    --app-bg-base: #fff3e0;
+    --app-texture-opacity: 0.3;
+    --app-texture-blend: multiply;
+    --app-surface-backdrop: 0.94;
+    --app-texture-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Crect fill='%23fff8f0' width='60' height='60'/%3E%3Cpath d='M0 30h60M30 0v60' stroke='%23ffd6a5' stroke-width='0.5' opacity='0.6'/%3E%3Crect x='8' y='8' width='14' height='10' rx='1' fill='none' stroke='%23e85d04' stroke-width='0.6' opacity='0.2'/%3E%3Crect x='38' y='42' width='14' height='10' rx='1' fill='none' stroke='%23e85d04' stroke-width='0.6' opacity='0.15'/%3E%3Cpath d='M12 42l4-4 4 4 4-4' stroke='%23e85d04' stroke-width='0.5' fill='none' opacity='0.18'/%3E%3Ccircle cx='45' cy='15' r='4' fill='none' stroke='%23ffb347' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E");
 }
 
 body {
     font-family: var(--font-sans);
     margin: 0;
-    background: #fff;
-    color: #111;
+    background-color: var(--app-bg-base, #fff);
+    color: var(--color-text);
     min-height: 100dvh;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--app-bg-base, #fff);
+    background-image: var(--app-texture-image, none);
+    background-size: 200px 200px;
+    background-repeat: repeat;
+    opacity: var(--app-texture-opacity, 0);
+    mix-blend-mode: var(--app-texture-blend, normal);
+    transition: opacity 0.3s ease;
+}
+
+/* Texture preview swatches in theme selector */
+[data-theme-preview="wood"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Crect fill='%23c9a882' width='60' height='60'/%3E%3Cpath d='M0 15h60M0 30h60M0 45h60' stroke='%23a67c52' stroke-width='0.6' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: 60px 60px;
+}
+
+[data-theme-preview="marble"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect fill='%23f0eeeb' width='80' height='80'/%3E%3Cpath d='M0 40c20-15 40 10 60 0s20-10 20 5' stroke='%23c8c4be' stroke-width='1' fill='none' opacity='0.6'/%3E%3C/svg%3E");
+    background-size: 80px 80px;
+}
+
+[data-theme-preview="linen"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Crect fill='%23faf6f0' width='20' height='20'/%3E%3Crect fill='%23e8dcc8' width='10' height='10'/%3E%3Crect fill='%23e8dcc8' x='10' y='10' width='10' height='10'/%3E%3C/svg%3E");
+    background-size: 20px 20px;
+}
+
+[data-theme-preview="terracotta"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect fill='%23f5e6d8' width='40' height='40'/%3E%3Ccircle cx='20' cy='20' r='14' fill='none' stroke='%23d4956a' stroke-width='0.6' opacity='0.4'/%3E%3C/svg%3E");
+    background-size: 40px 40px;
+}
+
+[data-theme-preview="delivery"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Crect fill='%23fff8f0' width='30' height='30'/%3E%3Cpath d='M0 15h30M15 0v30' stroke='%23ffd6a5' stroke-width='0.4' opacity='0.6'/%3E%3Crect x='4' y='4' width='7' height='5' rx='0.5' fill='none' stroke='%23e85d04' stroke-width='0.4' opacity='0.25'/%3E%3C/svg%3E");
+    background-size: 30px 30px;
 }
 
 .hide-scrollbar {

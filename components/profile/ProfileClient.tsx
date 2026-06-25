@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { LoginForm } from "@/components/LoginForm";
 import { ProfileInstallSection } from "@/components/profile/ProfileInstallSection";
+import { ThemeSelector } from "@/components/theme/ThemeSelector";
 import {
   getBrowserNotificationPermission,
   isBrowserNotificationSupported,
@@ -360,6 +361,8 @@ export function ProfileClient({
           </div>
         </ProfileSection>
       )}
+
+      <ThemeSelector />
 
       <ProfileInstallSection />
     </div>

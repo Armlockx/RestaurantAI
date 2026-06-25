@@ -39,7 +39,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var k="restaurantai-theme-preferences";var r=localStorage.getItem(k);var p=r?JSON.parse(r):{android:"light",ios:"light"};var ua=navigator.userAgent;var plat=/iPad|iPhone|iPod/.test(ua)?"ios":"android";var t=p[plat]||"light";document.documentElement.dataset.theme=t;var colors={light:"#111111",dark:"#141414",wood:"#5c3d2e",marble:"#2c2c2c",linen:"#8b4513",terracotta:"#a0522d",delivery:"#e85d04"};var c=colors[t]||"#111111";var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",c);}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body>
         <SerwistProvider swUrl="/sw.js">
           <Suspense
